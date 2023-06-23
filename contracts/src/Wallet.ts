@@ -9,17 +9,17 @@ import { Field, SmartContract, state, State, method } from 'snarkyjs';
  *
  * This file is safe to delete and replace with your own contract.
  */
-export class Add extends SmartContract {
-  @state(Field) num = State<Field>();
+export class Wallet extends SmartContract {
+  @state(Field) tokens = State<Field>();
 
   init() {
     super.init();
-    this.num.set(Field(1));
+    this.tokens.set(Field(3));
   }
 
   @method update() {
-    const currentState = this.num.getAndAssertEquals();
+    const currentState = this.tokens.getAndAssertEquals();
     const newState = currentState.add(2);
-    this.num.set(newState);
+    this.tokens.set(newState);
   }
 }

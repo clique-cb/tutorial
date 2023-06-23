@@ -1,3 +1,3 @@
-import { Add } from './Add.js';
+import { Wallet } from './Wallet.js';
 
-export { Add };
+export { Wallet };

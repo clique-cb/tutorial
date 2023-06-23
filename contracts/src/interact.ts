@@ -14,7 +14,7 @@
  */
 import { Mina, PrivateKey } from 'snarkyjs';
 import fs from 'fs/promises';
-import { Add } from './Add.js';
+import { Wallet } from './Wallet.js';
 
 // check command line arg
 let deployAlias = process.argv[2];
@@ -41,11 +41,11 @@ let zkAppKey = PrivateKey.fromBase58(key.privateKey);
 const Network = Mina.Network(config.url);
 Mina.setActiveInstance(Network);
 let zkAppAddress = zkAppKey.toPublicKey();
-let zkApp = new Add(zkAppAddress);
+let zkApp = new Wallet(zkAppAddress);
 
 // compile the contract to create prover keys
 console.log('compile the contract...');
-await Add.compile();
+await Wallet.compile();
 
 // call update() and send transaction
 console.log('build transaction and create proof...');
